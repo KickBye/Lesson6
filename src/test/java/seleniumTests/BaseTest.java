@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import utils.PropertyLoader;
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,14 +18,14 @@ public class BaseTest {
     WebDriver driver;
 
     // комментирование для 8 урока public String setStendKey = System.setProperty("StendKey","stend1");
-    public String stendKey = System.getProperty("StendKey");
-    public String stendUrl = PropertyLoader.loadProperty(stendKey);
+    //public String stendKey = System.getProperty("StendKey");
+    //public String stendUrl = PropertyLoader.loadProperty(stendKey);
 
     @BeforeTest
     public void beforeT(){
         System.setProperty("webdriver.chrome.driver","./src/main/resources/chromedriver.exe");
         ChromeOptions op = new ChromeOptions();
-        //закомментировано в 6 уроке
+        //закомментировано в 6 уроке, это если нам нужно на локале запускать
      //   DesiredCapabilities dc= DesiredCapabilities.chrome();
      //   dc.setCapability(ChromeOptions.CAPABILITY,op);
       //  driver= new ChromeDriver();
@@ -33,14 +33,14 @@ public class BaseTest {
         //дописано в 7 уроке
         //op.setCapability("version","100.0");
 
-
+//передача урла
         URL hub = null;
         try {
             hub = new URL("http://localhost:4444/wd/hub");
         }catch (MalformedURLException e){
             e.printStackTrace();
         }
-
+        //передача урла и пути до драйвера
         driver = new RemoteWebDriver(hub,op);
 
 
